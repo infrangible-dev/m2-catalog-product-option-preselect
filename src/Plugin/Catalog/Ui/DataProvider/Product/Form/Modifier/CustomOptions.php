@@ -50,7 +50,7 @@ class CustomOptions
                 'children',
                 static::FIELD_PRESELECT_NAME
             ],
-            $this->getPreselectFieldConfig(120)
+            $this->getPreselectFieldConfig(130)
         );
     }
 
