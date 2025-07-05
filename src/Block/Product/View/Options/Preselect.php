@@ -64,7 +64,7 @@ class Preselect extends Template
         $config = [];
 
         foreach ($this->getOptions() as $option) {
-            if ($option->getType() === 'drop_down') {
+            if ($option->getType() === 'drop_down' || $option->getType() === 'select2') {
                 /** @var Value $optionValue */
                 foreach ($option->getValues() as $optionValue) {
                     if ($optionValue->getData('preselect')) {

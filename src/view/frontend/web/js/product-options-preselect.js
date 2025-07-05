@@ -29,7 +29,7 @@ define([
                     var type = optionData.type;
                     var optionValueId = optionData.option_type_id;
 
-                    if (type === 'drop_down') {
+                    if (type === 'drop_down' || type === 'select2') {
                         var select = $('#product-options-wrapper #select_' + optionId);
 
                         if (select.length > 0) {
