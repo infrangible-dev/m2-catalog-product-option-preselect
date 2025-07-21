@@ -30,7 +30,7 @@ define([
                     var optionValueId = optionData.option_type_id;
 
                     if (type === 'drop_down' || type === 'select2') {
-                        var select = $('#product-options-wrapper #select_' + optionId);
+                        var select = self.element.find('#select_' + optionId);
 
                         if (select.length > 0) {
                             var option = select.find('option[value="' + optionValueId + '"]');

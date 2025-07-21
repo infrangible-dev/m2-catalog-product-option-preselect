@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Infrangible\CatalogProductOptionPreselect\Block\Product\View\Options;
 
-use FeWeDev\Base\Json;
+use Infrangible\CatalogProductOptionPreselect\Helper\Data;
 use Infrangible\Core\Helper\Registry;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Option;
-use Magento\Catalog\Model\Product\Option\Value;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -21,13 +20,13 @@ class Preselect extends Template
     /** @var Registry */
     protected $registryHelper;
 
-    /** @var Json */
-    protected $json;
+    /** @var Data */
+    protected $helper;
 
     /** @var Product */
     private $product;
 
-    public function __construct(Template\Context $context, Registry $registryHelper, Json $json, array $data = [])
+    public function __construct(Template\Context $context, Registry $registryHelper, Data $helper, array $data = [])
     {
         parent::__construct(
             $context,
@@ -35,7 +34,7 @@ class Preselect extends Template
         );
 
         $this->registryHelper = $registryHelper;
-        $this->json = $json;
+        $this->helper = $helper;
     }
 
     public function getProduct(): Product
@@ -61,23 +60,6 @@ class Preselect extends Template
 
     public function getOptionsConfig(): string
     {
-        $config = [];
-
-        foreach ($this->getOptions() as $option) {
-            if ($option->getType() === 'drop_down' || $option->getType() === 'select2') {
-                /** @var Value $optionValue */
-                foreach ($option->getValues() as $optionValue) {
-                    if ($optionValue->getData('preselect')) {
-                        $config[] = [
-                            'option_id'      => $option->getOptionId(),
-                            'type'           => 'drop_down',
-                            'option_type_id' => $optionValue->getOptionTypeId()
-                        ];
-                    }
-                }
-            }
-        }
-
-        return $this->json->encode($config);
+        return $this->helper->getOptionsJsonConfig($this->getOptions());
     }
 }
