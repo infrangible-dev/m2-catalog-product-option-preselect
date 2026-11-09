@@ -10,7 +10,7 @@ define([
 ], function ($, domReady) {
     'use strict';
 
-    var globalOptions = {
+    const globalOptions = {
         config: {}
     };
 
@@ -21,19 +21,19 @@ define([
         },
 
         _init: function initProductOptionsPreselect() {
-            var self = this;
+            const self = this;
 
             domReady(function() {
                 $.each(self.options.config, function (key, optionData) {
-                    var optionId = optionData.option_id;
-                    var type = optionData.type;
-                    var optionValueId = optionData.option_type_id;
+                    const optionId = optionData.option_id;
+                    const type = optionData.type;
+                    const optionValueId = optionData.option_type_id;
 
                     if (type === 'drop_down' || type === 'select2') {
-                        var select = self.element.find('#select_' + optionId);
+                        const select = self.element.find('#select_' + optionId);
 
                         if (select.length > 0) {
-                            var option = select.find('option[value="' + optionValueId + '"]');
+                            const option = select.find('option[value="' + optionValueId + '"]');
 
                             if (option.length > 0) {
                                 select.val(optionValueId);
